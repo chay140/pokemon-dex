@@ -6,7 +6,8 @@ function Dashboard() {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: rgb(248, 248, 248);
+    background-color: rgb(240, 240, 240);
+    border: 1px solid rgb(221, 221, 221);
     margin-bottom: 20px;
     border-radius: 10px;
   `;
