@@ -1,5 +1,13 @@
+import Dashboard from "../components/Dashboard";
+
 function Dex() {
-  return <h1>This is the Dex component</h1>;
+  
+  return (
+    <>
+      <Dashboard />
+      
+    </>
+  );
 }
 
 export default Dex;
