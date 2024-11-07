@@ -1,18 +1,6 @@
 import styled from "styled-components";
 
-function PokemonCard() {
-  const temp_data = [
-    {
-      img_url:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png",
-      korean_name: "뮤",
-      types: ["에스퍼"],
-      id: 151,
-      description:
-        "에스퍼 타입의 전설의 포켓몬으로, 희귀하고 신비로운 능력을 가집니다.",
-    },
-  ];
-
+function PokemonCard({ img_url, korean_name, id }) {
   const StCard = styled.div`
     border: 1px solid rgb(221, 221, 221);
     background-color: rgb(255, 255, 255);
@@ -23,6 +11,10 @@ function PokemonCard() {
     padding: 10px;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
+    &:hover {
+      transform: translateY(-7px);
+      box-shadow: rgba(0, 0, 0, 0.6) 0px 8px 16px;
+    }
   `;
 
   const StPokemonImg = styled.img`
@@ -44,7 +36,7 @@ function PokemonCard() {
     color: rgb(102, 102, 102);
   `;
 
-	const StPokemonAddButton = styled.button`
+  const StPokemonAddButton = styled.button`
     margin-top: 10px;
     padding: 5px 10px;
     font-size: 12px;
@@ -58,15 +50,19 @@ function PokemonCard() {
       color: white;
     }
   `;
-	
+
+  const str_id = id.toString().padStart(3, "0");
+
   return (
     <StCard>
-      <StPokemonImg src={`${temp_data[0].img_url}`} />
+      <StPokemonImg src={img_url} />
       <StTextWrapper>
-        <StPokemonName>{`${temp_data[0].korean_name}`}</StPokemonName>
-        <StPokemonNum>{`No.${temp_data[0].id}`}</StPokemonNum>
-			</StTextWrapper>
-			<StPokemonAddButton>추가</StPokemonAddButton>
+        <StPokemonName>{korean_name}</StPokemonName>
+        <StPokemonNum>{`No.${str_id}`}</StPokemonNum>
+      </StTextWrapper>
+      <StPokemonAddButton onClick={() => console.log(id, "clicked")}>
+        추가
+      </StPokemonAddButton>
     </StCard>
   );
 }
