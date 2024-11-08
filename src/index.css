@@ -1,4 +1,11 @@
 /* tag css if needed */
+#root {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
 body {
-    background-color: rgb(200, 219, 255);
+  background-color: rgb(200, 219, 255);
 }

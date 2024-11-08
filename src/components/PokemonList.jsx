@@ -16,7 +16,7 @@ import MOCK_DATA from "../assets/MOCK_DATA";
     gap: 20px;
   `;
 
-function PokemonList() {
+function PokemonList({ addPokemonToDashboard }) {
   return (
     <StListWrapper>
       <h3>1세대 포켓몬 리스트</h3>
@@ -25,9 +25,8 @@ function PokemonList() {
           return (
             <PokemonCard
               key={pokemon.id}
-              img_url={pokemon.img_url}
-              korean_name={pokemon.korean_name}
-              id={pokemon.id}
+              pokemon={pokemon}
+              addPokemonToDashboard={addPokemonToDashboard}
             />
           );
         })}

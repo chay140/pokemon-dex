@@ -50,16 +50,17 @@ import styled from "styled-components";
     }
   `;
 
-function PokemonCard({ img_url, korean_name, id }) {
-  const str_id = id.toString().padStart(3, "0");
+function PokemonCard({ pokemon, addPokemonToDashboard }) {
+  const str_id = pokemon.id.toString().padStart(3, "0");
+
   return (
     <StCard>
-      <StPokemonImg src={img_url} />
+      <StPokemonImg src={pokemon.img_url} />
       <StTextWrapper>
-        <StPokemonName>{korean_name}</StPokemonName>
+        <StPokemonName>{pokemon.korean_name}</StPokemonName>
         <StPokemonNum>{`No.${str_id}`}</StPokemonNum>
       </StTextWrapper>
-      <StPokemonAddButton onClick={() => console.log(id, "clicked")}>
+      <StPokemonAddButton onClick={() => addPokemonToDashboard(pokemon)}>
         추가
       </StPokemonAddButton>
     </StCard>
