@@ -3,6 +3,7 @@ import Pokeball from "../assets/pokeball.png";
 import PokemonCard from "./PokemonCard";
 
 const StyledDashboard = styled.div`
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,6 +21,7 @@ const StCellWrapper = styled.div`
   gap: 40px;
   width: 90%;
   justify-content: center;
+  justify-items: center;
 `;
 
 const StImgWrapper = styled.div`
