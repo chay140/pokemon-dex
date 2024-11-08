@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-function PokemonCard({ img_url, korean_name, id }) {
   const StCard = styled.div`
     border: 1px solid rgb(221, 221, 221);
     background-color: rgb(255, 255, 255);
@@ -51,8 +50,8 @@ function PokemonCard({ img_url, korean_name, id }) {
     }
   `;
 
+function PokemonCard({ img_url, korean_name, id }) {
   const str_id = id.toString().padStart(3, "0");
-
   return (
     <StCard>
       <StPokemonImg src={img_url} />

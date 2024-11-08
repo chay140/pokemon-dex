@@ -2,7 +2,6 @@ import styled from "styled-components";
 import PokemonCard from "./PokemonCard";
 import MOCK_DATA from "../assets/MOCK_DATA";
 
-function PokemonList() {
   const StListWrapper = styled.div`
     text-align: center;
     background-color: rgb(240, 240, 240);
@@ -17,6 +16,7 @@ function PokemonList() {
     gap: 20px;
   `;
 
+function PokemonList() {
   return (
     <StListWrapper>
       <h3>1세대 포켓몬 리스트</h3>

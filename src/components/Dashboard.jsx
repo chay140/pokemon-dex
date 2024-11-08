@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Pokeball from "../assets/pokeball.png"
 
-function Dashboard() {
 	const StyledDashboard = styled.div`
     display: flex;
     flex-direction: column;
@@ -31,12 +30,14 @@ function Dashboard() {
     justify-content: center;
     border-radius: 10px;
   `;
-  
+
   const StPokeballImg = styled.img`
     width: 50px;
     height: 50px;
     object-fit: cover;
   `;
+
+function Dashboard() {
 
   return (
     <StyledDashboard>
