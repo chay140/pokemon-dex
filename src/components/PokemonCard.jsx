@@ -50,7 +50,7 @@ import styled from "styled-components";
     }
   `;
 
-function PokemonCard({ pokemon, addPokemonToDashboard }) {
+function PokemonCard({ pokemon, cardButtonHandler, buttonText }) {
   const str_id = pokemon.id.toString().padStart(3, "0");
 
   return (
@@ -60,8 +60,8 @@ function PokemonCard({ pokemon, addPokemonToDashboard }) {
         <StPokemonName>{pokemon.korean_name}</StPokemonName>
         <StPokemonNum>{`No.${str_id}`}</StPokemonNum>
       </StTextWrapper>
-      <StPokemonAddButton onClick={() => addPokemonToDashboard(pokemon)}>
-        추가
+      <StPokemonAddButton onClick={() => cardButtonHandler(pokemon)}>
+        {buttonText}
       </StPokemonAddButton>
     </StCard>
   );

@@ -47,10 +47,8 @@ function EmptyCell() {
   );
 }
 
-function Dashboard({ pokemonList }) {
+function Dashboard({ pokemonList, removePokemonHendler }) {
   const emptyCell = Array(6 - pokemonList.length).fill({});
-
-  console.log("emptyCell", emptyCell);
 
   return (
     <StyledDashboard>
@@ -58,7 +56,14 @@ function Dashboard({ pokemonList }) {
       <StCellWrapper>
         {[...pokemonList, ...emptyCell].map((pokemon) => {
           if (Object.keys(pokemon).length > 0) {
-            return <PokemonCard key={pokemon.id} pokemon={pokemon} />;
+            return (
+              <PokemonCard
+                key={pokemon.id}
+                pokemon={pokemon}
+                buttonText={`삭제`}
+                cardButtonHandler={removePokemonHendler}
+              />
+            );
           } else {
             return <EmptyCell key={Math.random()} />;
           }

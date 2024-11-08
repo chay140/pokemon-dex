@@ -5,7 +5,7 @@ import PokemonList from "../components/PokemonList";
 function Dex() {
   const [pokemonList, setPokemonList] = useState([]);
 
-  const addPokemonToDashboard = (pokemon) => {
+  const addPokemonHandler = (pokemon) => {
     setPokemonList((prevList) => {
       if (prevList.length < 6 && !prevList.includes(pokemon)) {
         return [...prevList, pokemon];
@@ -23,10 +23,20 @@ function Dex() {
     });
   };
 
+  const removePokemonHendler = (pokemon) => { 
+    setPokemonList((prevList) => {
+      const newList = prevList.filter((item) => {
+        return JSON.stringify(item) !== JSON.stringify(pokemon);
+      });
+
+      return [...newList];
+    });
+  };
+
   return (
     <>
-      <Dashboard pokemonList={pokemonList} />
-      <PokemonList addPokemonToDashboard={addPokemonToDashboard} />
+      <Dashboard pokemonList={pokemonList} removePokemonHendler={removePokemonHendler} />
+      <PokemonList addPokemonHandler={addPokemonHandler} />
     </>
   );
 }
