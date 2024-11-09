@@ -35,10 +35,10 @@ function Dex() {
   };
 
   return (
-    <PokemonContext>
-      <Dashboard pokemonList={pokemonList} removePokemonHendler={removePokemonHendler} />
+    <PokemonContext.Provider value={{pokemonList, addPokemonHandler, removePokemonHendler}}>
+      <Dashboard />
       <PokemonList addPokemonHandler={addPokemonHandler} />
-    </PokemonContext>
+    </PokemonContext.Provider>
   );
 }
 
