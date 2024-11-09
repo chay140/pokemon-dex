@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Dashboard from "../components/Dashboard";
 import PokemonList from "../components/PokemonList";
+import { PokemonContext } from "../context/PokemonContext";
 
 function Dex() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -34,10 +35,10 @@ function Dex() {
   };
 
   return (
-    <>
+    <PokemonContext>
       <Dashboard pokemonList={pokemonList} removePokemonHendler={removePokemonHendler} />
       <PokemonList addPokemonHandler={addPokemonHandler} />
-    </>
+    </PokemonContext>
   );
 }
 

@@ -1,4 +1,3 @@
 import { createContext } from "react";
 
-
-const PokemonContext = createContext(null);
+export const PokemonContext = createContext(null);
