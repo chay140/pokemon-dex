@@ -13,11 +13,18 @@ function Home() {
     height: 100vh;
   `;
 
+  const StTitle = styled.h1`
+    font-size: 80px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: black;
+  `;
+
 	const StyledStartButton = styled.button`
-    padding: 10px 20px;
-    font-size: 18px;
+    padding: 20px 30px;
+    font-size: 32px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: cornflowerblue;
     color: white;
     border: none;
@@ -31,7 +38,7 @@ function Home() {
   
   return (
     <StyledHome>
-      <h1>Pokemon Dex</h1>
+      <StTitle>Pokemon Dex</StTitle>
       <StyledStartButton
         onClick={() => {
           navigate("/dex");
