@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+const ANIMATED_SPRITE_ROUTE =
+  "https://github.com/PokeAPI/sprites/raw/master/sprites/pokemon/versions/generation-v/black-white/animated";
+
 const StCard = styled.div`
   border: 1px solid rgb(221, 221, 221);
   background-color: rgb(255, 255, 255);
@@ -17,9 +20,18 @@ const StCard = styled.div`
   }
 `;
 
-const StPokemonImg = styled.img`
+const StImgWrapper = styled.div`
   width: 100px;
   height: 100px;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StPokemonImg = styled.img`
+  /* width: 100px;
+  height: 100px; */
 `;
 
 const StTextWrapper = styled.div`
@@ -64,11 +76,16 @@ function PokemonCard({ pokemon, cardButtonHandler, buttonText }) {
     // 버튼이 눌렸을때는 디테일 페이지 X
     e.stopPropagation();
     cardButtonHandler(pokemon);
-  }
+  };
+
+  const animated_url = `${ANIMATED_SPRITE_ROUTE}/${pokemon.id}.gif`;
 
   return (
     <StCard onClick={handleCardClick}>
-      <StPokemonImg src={pokemon.img_url} />
+      <StImgWrapper>
+        <StPokemonImg src={animated_url} />
+      </StImgWrapper>
+
       <StTextWrapper>
         <StPokemonName>{pokemon.korean_name}</StPokemonName>
         <StPokemonNum>{`No.${str_id}`}</StPokemonNum>

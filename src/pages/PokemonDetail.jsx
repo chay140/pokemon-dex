@@ -28,6 +28,12 @@ const StPokemonDetail = styled.p`
   font-size: 20px;
 `;
 
+const StBtnContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+`;
+
 const StButton = styled.button`
   padding: 10px 20px;
   font-size: 18px;
@@ -65,16 +71,18 @@ function PokemonDetail() {
       <StPokemonName>{targetPokemon.korean_name}</StPokemonName>
       <StPokemonDetail>{`타입: ${types_str}`}</StPokemonDetail>
       <StPokemonDetail>{targetPokemon.description}</StPokemonDetail>
-      <StButton
-        onClick={() => {
-          navigate("/dex");
-        }}
-      >
-        뒤로가기
-      </StButton>
-      <StButton onClick={() => addPokemonHandler(targetPokemon)}>
-        추가
-      </StButton>
+      <StBtnContainer>
+        <StButton
+          onClick={() => {
+            navigate("/dex");
+          }}
+        >
+          뒤로가기
+        </StButton>
+        <StButton onClick={() => addPokemonHandler(targetPokemon)}>
+          추가
+        </StButton>
+      </StBtnContainer>
     </StDetailContainer>
   );
 }

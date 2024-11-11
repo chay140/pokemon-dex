@@ -21,6 +21,7 @@ const StyledDashboard = styled.div`
 const StCellWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  margin-top: 20px;
   gap: 20px;
   width: 90%;
   height: 200px;
