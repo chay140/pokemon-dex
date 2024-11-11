@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Pokeball from "../assets/pokeball.png";
 import PokemonCard from "./PokemonCard";
+import { useContext } from "react";
+import { PokemonContext } from "../context/PokemonContext";
 
 const StyledDashboard = styled.div`
   margin-top: 50px;
@@ -41,6 +43,7 @@ const StPokeballImg = styled.img`
   object-fit: cover;
 `;
 
+// 메모이제이션 필요해 보임 (추후에 추가하기)
 function EmptyCell() {
   return (
     <StImgWrapper>
@@ -49,7 +52,10 @@ function EmptyCell() {
   );
 }
 
-function Dashboard({ pokemonList, removePokemonHendler }) {
+function Dashboard() {
+  const pokemonList = useContext(PokemonContext).pokemonList;
+  const removePokemonHendler = useContext(PokemonContext).removePokemonHendler;
+
   const emptyCell = Array(6 - pokemonList.length).fill({});
 
   return (

@@ -1,6 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import MOCK_DATA from "../assets/MOCK_DATA";
 import styled from "styled-components";
+import { useContext } from "react";
+import { PokemonContext } from "../context/PokemonContext";
 
 const StDetailContainer = styled.div`
   display: flex;
@@ -26,7 +28,7 @@ const StPokemonDetail = styled.p`
   font-size: 20px;
 `;
 
-const StGoBackButton = styled.button`
+const StButton = styled.button`
   padding: 10px 20px;
   font-size: 18px;
   cursor: pointer;
@@ -44,6 +46,7 @@ const StGoBackButton = styled.button`
 function PokemonDetail() {
 	const navigate = useNavigate();
   const params = useParams();
+  const addPokemonHandler = useContext(PokemonContext).addPokemonHandler;
 
   const targetPokemon = MOCK_DATA.find(function (pokemon) {
     return pokemon.id === Number(params.id);
@@ -62,13 +65,16 @@ function PokemonDetail() {
       <StPokemonName>{targetPokemon.korean_name}</StPokemonName>
       <StPokemonDetail>{`타입: ${types_str}`}</StPokemonDetail>
       <StPokemonDetail>{targetPokemon.description}</StPokemonDetail>
-      <StGoBackButton
+      <StButton
         onClick={() => {
           navigate("/dex");
         }}
       >
         뒤로가기
-      </StGoBackButton>
+      </StButton>
+      <StButton onClick={() => addPokemonHandler(targetPokemon)}>
+        추가
+      </StButton>
     </StDetailContainer>
   );
 }
