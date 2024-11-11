@@ -34,9 +34,13 @@ function App() {
     });
   };
 
+  const removeAllPokemon = () => {
+    setPokemonList([]);
+  };
+
   return (
     <PokemonContext.Provider
-      value={{ pokemonList, addPokemonHandler, removePokemonHendler }}
+      value={{ pokemonList, addPokemonHandler, removePokemonHendler, removeAllPokemon }}
     >
       <Router />
     </PokemonContext.Provider>

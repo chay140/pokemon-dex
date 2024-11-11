@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Pokeball from "../assets/pokeball.png";
+import RestartImg from "../assets/pixel_restart.png";
 import PokemonCard from "./PokemonCard";
 import { useContext } from "react";
 import { PokemonContext } from "../context/PokemonContext";
@@ -20,10 +21,26 @@ const StyledDashboard = styled.div`
 const StCellWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 40px;
+  gap: 20px;
   width: 90%;
-  justify-content: center;
-  justify-items: center;
+  height: 200px;
+  justify-items: stretch;
+  align-items: center;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  @media (max-width: 360px) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 `;
 
 const StImgWrapper = styled.div`
@@ -34,12 +51,27 @@ const StImgWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  justify-self: center;
   border-radius: 10px;
 `;
 
 const StPokeballImg = styled.img`
   width: 50px;
   height: 50px;
+  object-fit: cover;
+`;
+
+const StResetBtn = styled.button`
+  margin-top: 30px;
+  background-color: rgb(255, 255, 255);
+  border: 6px double rgb(204, 204, 204);
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
+const StResetImg = styled.img`
+  width: 30px;
+  height: 30px;
   object-fit: cover;
 `;
 
@@ -55,6 +87,7 @@ function EmptyCell() {
 function Dashboard() {
   const pokemonList = useContext(PokemonContext).pokemonList;
   const removePokemonHendler = useContext(PokemonContext).removePokemonHendler;
+  const removeAllPokemon = useContext(PokemonContext).removeAllPokemon;
 
   const emptyCell = Array(6 - pokemonList.length).fill({});
 
@@ -77,6 +110,9 @@ function Dashboard() {
           }
         })}
       </StCellWrapper>
+      <StResetBtn onClick={removeAllPokemon}>
+        <StResetImg src={RestartImg} alt=""/>
+      </StResetBtn>
     </StyledDashboard>
   );
 }

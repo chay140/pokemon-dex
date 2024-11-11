@@ -37,8 +37,9 @@ const StPokemonNum = styled.p`
 `;
 
 const StPokemonAddButton = styled.button`
+  width: 40%;
   margin-top: 10px;
-  padding: 5px 10px;
+  padding: 10px 10px;
   font-size: 12px;
   cursor: pointer;
   border: none;
