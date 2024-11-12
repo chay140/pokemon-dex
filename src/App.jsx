@@ -8,8 +8,10 @@ function App() {
 
   // 포켓몬 추가
   const addPokemonHandler = (pokemon) => {
+    let success = false;
     setPokemonList((prevList) => {
       if (prevList.length < 6 && !prevList.includes(pokemon)) {
+        success = true;
         return [...prevList, pokemon];
       } else {
         if (prevList.includes(pokemon)) {
@@ -23,6 +25,9 @@ function App() {
         return [...prevList];
       }
     });
+
+    // 추가 되었을 시 1 아닌 경우 -1
+    return success;
   };
 
   // 포켓몬 삭제

@@ -26,11 +26,6 @@ const StImgWrapper = styled.div`
   align-items: center;
 `;
 
-const StPokemonImg = styled.img`
-  /* width: 100px;
-  height: 100px; */
-`;
-
 const StTextWrapper = styled.div`
   margin: 10px;
 `;
@@ -78,7 +73,7 @@ function PokemonCard({ pokemon, cardButtonHandler, buttonText }) {
   return (
     <StCard onClick={handleCardClick}>
       <StImgWrapper>
-        <StPokemonImg src={pokemon.img_url} />
+        <img src={pokemon.img_url} alt={pokemon.korean_name} />
       </StImgWrapper>
 
       <StTextWrapper>

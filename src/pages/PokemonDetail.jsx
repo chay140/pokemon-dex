@@ -13,9 +13,17 @@ const StDetailContainer = styled.div`
   height: 100vh;
 `;
 
-const StPokemonImg = styled.img`
+const StPokemonImgWrapper = styled.div`
   width: 200px;
   height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StPokemonImg = styled.img`
+  width: 100%;
+  object-fit: cover;
 `;
 
 const StPokemonName = styled.h1`
@@ -50,9 +58,15 @@ const StButton = styled.button`
 `;
 
 function PokemonDetail() {
-	const navigate = useNavigate();
+  const navigate = useNavigate();
   const params = useParams();
   const addPokemonHandler = useContext(PokemonContext).addPokemonHandler;
+
+  const addButtonHandler = () => {
+    if (addPokemonHandler(targetPokemon)) {
+      alert("포켓몬이 추가되었습니다!");
+    }
+  };
 
   const targetPokemon = MOCK_DATA.find(function (pokemon) {
     return pokemon.id === Number(params.id);
@@ -62,10 +76,12 @@ function PokemonDetail() {
 
   return (
     <StDetailContainer>
-      <StPokemonImg
-        src={targetPokemon.img_url}
-        alt={targetPokemon.korean_name}
-      />
+      <StPokemonImgWrapper>
+        <StPokemonImg
+          src={targetPokemon.img_url}
+          alt={targetPokemon.korean_name}
+        />
+      </StPokemonImgWrapper>
       <StPokemonName>{targetPokemon.korean_name}</StPokemonName>
       <StPokemonDetail>{`타입: ${types_str}`}</StPokemonDetail>
       <StPokemonDetail>{targetPokemon.description}</StPokemonDetail>
@@ -77,9 +93,7 @@ function PokemonDetail() {
         >
           뒤로가기
         </StButton>
-        <StButton onClick={() => addPokemonHandler(targetPokemon)}>
-          추가
-        </StButton>
+        <StButton onClick={addButtonHandler}>추가</StButton>
       </StBtnContainer>
     </StDetailContainer>
   );
