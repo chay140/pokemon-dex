@@ -42,14 +42,12 @@ const StGoBackButton = styled.button`
 `;
 
 function PokemonDetail() {
-	const navigate = useNavigate();
+  const navigate = useNavigate();
   const params = useParams();
 
   const targetPokemon = MOCK_DATA.find(function (pokemon) {
     return pokemon.id === Number(params.id);
   });
-
-  console.log(targetPokemon);
 
   const types_str = targetPokemon.types.join(", ");
 
