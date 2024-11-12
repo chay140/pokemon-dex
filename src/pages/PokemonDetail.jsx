@@ -58,8 +58,6 @@ function PokemonDetail() {
     return pokemon.id === Number(params.id);
   });
 
-  console.log(targetPokemon);
-
   const types_str = targetPokemon.types.join(", ");
 
   return (

@@ -1,9 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const ANIMATED_SPRITE_ROUTE =
-  "https://github.com/PokeAPI/sprites/raw/master/sprites/pokemon/versions/generation-v/black-white/animated";
-
 const StCard = styled.div`
   border: 1px solid rgb(221, 221, 221);
   background-color: rgb(255, 255, 255);
@@ -78,12 +75,10 @@ function PokemonCard({ pokemon, cardButtonHandler, buttonText }) {
     cardButtonHandler(pokemon);
   };
 
-  const animated_url = `${ANIMATED_SPRITE_ROUTE}/${pokemon.id}.gif`;
-
   return (
     <StCard onClick={handleCardClick}>
       <StImgWrapper>
-        <StPokemonImg src={animated_url} />
+        <StPokemonImg src={pokemon.img_url} />
       </StImgWrapper>
 
       <StTextWrapper>

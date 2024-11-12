@@ -80,6 +80,7 @@ function Dashboard() {
               />
             );
           } else {
+            {/* TODO key 어떡하지...  */}
             return <PokeballCell key={Math.random()} />;
           }
         })}

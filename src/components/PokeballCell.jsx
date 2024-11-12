@@ -1,5 +1,6 @@
-import styled from 'styled-components';
-import Pokeball from "../assets/pokeball.png";
+import styled from "styled-components";
+import Pokeball from "../assets/pokeball_8bit.png";
+import React from "react";
 
 const StImgWrapper = styled.div`
   width: 100px;
@@ -20,7 +21,8 @@ const StPokeballImg = styled.img`
 `;
 
 function PokeballCell() {
-    // 콘솔 확인하기
+  // 콘솔 확인하기
+//   console.log("pokeballcell rendered");
   return (
     <StImgWrapper>
       <StPokeballImg src={Pokeball} alt="Pokeball 8bit icon" />
@@ -28,4 +30,4 @@ function PokeballCell() {
   );
 }
 
-export default PokeballCell
+export default React.memo(PokeballCell);
