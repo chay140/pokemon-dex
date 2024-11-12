@@ -6,6 +6,7 @@ import { PokemonContext } from "./context/PokemonContext";
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
 
+  // 포켓몬 추가
   const addPokemonHandler = (pokemon) => {
     setPokemonList((prevList) => {
       if (prevList.length < 6 && !prevList.includes(pokemon)) {
@@ -24,6 +25,7 @@ function App() {
     });
   };
 
+  // 포켓몬 삭제
   const removePokemonHendler = (pokemon) => {
     setPokemonList((prevList) => {
       const newList = prevList.filter((item) => {
@@ -34,13 +36,19 @@ function App() {
     });
   };
 
+  // 포켓몬 전체 삭제
   const removeAllPokemon = () => {
     setPokemonList([]);
   };
 
   return (
     <PokemonContext.Provider
-      value={{ pokemonList, addPokemonHandler, removePokemonHendler, removeAllPokemon }}
+      value={{
+        pokemonList,
+        addPokemonHandler,
+        removePokemonHendler,
+        removeAllPokemon,
+      }}
     >
       <Router />
     </PokemonContext.Provider>

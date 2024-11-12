@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import Pokeball from "../assets/pokeball.png";
 import RestartImg from "../assets/pixel_restart.png";
 import PokemonCard from "./PokemonCard";
 import { useContext } from "react";
 import { PokemonContext } from "../context/PokemonContext";
+import PokeballCell from "./PokeballCell";
 
 const StyledDashboard = styled.div`
   margin-top: 50px;
@@ -44,24 +44,6 @@ const StCellWrapper = styled.div`
   }
 `;
 
-const StImgWrapper = styled.div`
-  width: 100px;
-  height: 100px;
-  background-color: rgb(255, 255, 255);
-  border: 6px double rgb(204, 204, 204);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  justify-self: center;
-  border-radius: 10px;
-`;
-
-const StPokeballImg = styled.img`
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-`;
-
 const StResetBtn = styled.button`
   margin-top: 30px;
   background-color: rgb(255, 255, 255);
@@ -75,15 +57,6 @@ const StResetImg = styled.img`
   height: 30px;
   object-fit: cover;
 `;
-
-// 메모이제이션 필요해 보임 (추후에 추가하기)
-function EmptyCell() {
-  return (
-    <StImgWrapper>
-      <StPokeballImg src={Pokeball} alt="Pokeball 8bit icon" />
-    </StImgWrapper>
-  );
-}
 
 function Dashboard() {
   const pokemonList = useContext(PokemonContext).pokemonList;
@@ -107,7 +80,7 @@ function Dashboard() {
               />
             );
           } else {
-            return <EmptyCell key={Math.random()} />;
+            return <PokeballCell key={Math.random()} />;
           }
         })}
       </StCellWrapper>
