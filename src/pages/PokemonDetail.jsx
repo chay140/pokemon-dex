@@ -3,6 +3,7 @@ import MOCK_DATA from "../assets/MOCK_DATA";
 import styled from "styled-components";
 import { useContext } from "react";
 import { PokemonContext } from "../context/PokemonContext";
+import { toast } from "react-toastify";
 
 const StDetailContainer = styled.div`
   display: flex;
@@ -77,7 +78,6 @@ function PokemonDetail() {
   const navigate = useNavigate();
   const params = useParams();
   const addPokemonHandler = useContext(PokemonContext).addPokemonHandler;
-  const notify = useContext(PokemonContext).notify;
 
   // 포켓몬 정보 불러오기
   const targetPokemon = MOCK_DATA.find(function (pokemon) {
@@ -90,7 +90,7 @@ function PokemonDetail() {
   // 디테일 페이지에서 추가 클릭시, 알림 띄우기!
   const addButtonHandler = () => {
     if (addPokemonHandler(targetPokemon)) {
-      notify("포켓몬이 추가되었습니다!");
+      toast.success("포켓몬이 추가되었습니다!");
     }
   };
 

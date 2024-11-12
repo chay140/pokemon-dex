@@ -8,17 +8,13 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
 
-  // toastify 테스트
-  const notify = (msg) => {
-    toast.success(`${msg}`);
-  };
-
   // 포켓몬 추가
   const addPokemonHandler = (pokemon) => {
     let success = false;
     setPokemonList((prevList) => {
       if (prevList.length < 6 && !prevList.includes(pokemon)) {
         success = true;
+        toast.success("포켓몬이 추가되었습니다!");
         return [...prevList, pokemon];
       } else {
         if (prevList.includes(pokemon)) {
@@ -60,7 +56,6 @@ function App() {
         addPokemonHandler,
         removePokemonHendler,
         removeAllPokemon,
-        notify,
       }}
     >
       <Router />
