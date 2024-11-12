@@ -22,12 +22,12 @@ const StCellWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   margin-top: 20px;
-  gap: 40px;
+  gap: 10px;
   min-height: 250px;
   justify-items: stretch;
   align-items: center;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1080px) {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }

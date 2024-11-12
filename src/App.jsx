@@ -6,14 +6,13 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+  // 대시보드에 저장할 리스트
   const [pokemonList, setPokemonList] = useState([]);
 
   // 포켓몬 추가
   const addPokemonHandler = (pokemon) => {
-    let success = false;
     setPokemonList((prevList) => {
       if (prevList.length < 6 && !prevList.includes(pokemon)) {
-        success = true;
         toast.success("포켓몬이 추가되었습니다!");
         return [...prevList, pokemon];
       } else {
@@ -24,13 +23,10 @@ function App() {
           // 6개 초과시
           toast.error("6개 초과");
         }
-
+        // 이전 리스트 그대로 반환
         return [...prevList];
       }
     });
-
-    // 추가 되었을 시 1 아닌 경우 -1
-    return success;
   };
 
   // 포켓몬 삭제

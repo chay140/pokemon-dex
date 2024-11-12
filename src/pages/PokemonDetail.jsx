@@ -3,7 +3,6 @@ import MOCK_DATA from "../assets/MOCK_DATA";
 import styled from "styled-components";
 import { useContext } from "react";
 import { PokemonContext } from "../context/PokemonContext";
-import { toast } from "react-toastify";
 import TYPE_COLOR_DATA from "../assets/TYPE_COLOR_DATA";
 
 // 디테일 페이지
@@ -35,7 +34,6 @@ const StPokemonImg = styled.img`
 // 이름 서식
 const StPokemonName = styled.h1`
   font-size: 40px;
-  /* color: #565bed; */
   color: black;
   font-weight: 900;
 `;
@@ -111,13 +109,6 @@ function PokemonDetail() {
     return pokemon.id === Number(params.id);
   });
 
-  // 디테일 페이지에서 추가 클릭시, 알림 띄우기!
-  const addButtonHandler = () => {
-    if (addPokemonHandler(targetPokemon)) {
-      toast.success("포켓몬이 추가되었습니다!");
-    }
-  };
-
   // 앞/뒤 번호 이동
   const toPrevPokemonHandler = () => {
     if (targetPokemon.id > 1) {
@@ -173,7 +164,9 @@ function PokemonDetail() {
         >
           뒤로가기
         </StButton>
-        <StButton onClick={addButtonHandler}>추가</StButton>
+        <StButton onClick={() => addPokemonHandler(targetPokemon)}>
+          추가
+        </StButton>
       </StBtnContainer>
     </StDetailContainer>
   );

@@ -3,6 +3,7 @@ import Pokeball from "../assets/pokeball_8bit.png";
 import React from "react";
 
 const StImgWrapper = styled.div`
+  margin: 0px 25px;
   width: 100px;
   height: 100px;
   background-color: rgb(255, 255, 255);
