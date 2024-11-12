@@ -4,7 +4,9 @@ import styled from "styled-components";
 import { useContext } from "react";
 import { PokemonContext } from "../context/PokemonContext";
 import { toast } from "react-toastify";
+import TYPE_COLOR_DATA from "../assets/TYPE_COLOR_DATA";
 
+// 디테일 페이지
 const StDetailContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -14,6 +16,7 @@ const StDetailContainer = styled.div`
   height: 100vh;
 `;
 
+// 이미지 및 앞뒤 버튼 wrapper
 const StPokemonImgWrapper = styled.div`
   width: 40%;
   height: 200px;
@@ -23,30 +26,53 @@ const StPokemonImgWrapper = styled.div`
   align-items: center;
 `;
 
+// 포켓몬 이미지 스타일링
 const StPokemonImg = styled.img`
   height: 100%;
   object-fit: cover;
 `;
 
+// 이름 서식
 const StPokemonName = styled.h1`
   font-size: 40px;
-  color: #565bed;
+  /* color: #565bed; */
+  color: black;
   font-weight: 900;
 `;
 
-const StPokemonDetail = styled.p`
-  font-size: 20px;
+// 타입(들) Wrapper
+const StPokemonTypeWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
+// 타입 박스
+const StPokemonType = styled.div`
+  background-color: ${(props) => props.$bg_color};
+  font-size: 24px;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 10px;
+  border: 5px solid ${(props) => props.$border_color};
+`;
+
+// 디테일 wrapper
+const StPokemonDetail = styled.p`
+  font-size: 24px;
+`;
+
+// 기능 버튼 wrapper
 const StBtnContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 10px;
 `;
 
+// 기본 버튼
 const StButton = styled.button`
   padding: 10px 20px;
-  font-size: 18px;
+  font-size: 22px;
   cursor: pointer;
   border-radius: 5px;
   background-color: cornflowerblue;
@@ -59,6 +85,7 @@ const StButton = styled.button`
   }
 `;
 
+// 앞뒤 버튼
 const StArrowBtn = styled.button`
   padding: 15px 20px;
   font-size: 40px;
@@ -83,9 +110,6 @@ function PokemonDetail() {
   const targetPokemon = MOCK_DATA.find(function (pokemon) {
     return pokemon.id === Number(params.id);
   });
-
-  // 타입 설명
-  const types_str = targetPokemon.types.join(", ");
 
   // 디테일 페이지에서 추가 클릭시, 알림 띄우기!
   const addButtonHandler = () => {
@@ -122,7 +146,24 @@ function PokemonDetail() {
         <StArrowBtn onClick={toNextPokemonHandler}>{`>`}</StArrowBtn>
       </StPokemonImgWrapper>
       <StPokemonName>{targetPokemon.korean_name}</StPokemonName>
-      <StPokemonDetail>{`타입: ${types_str}`}</StPokemonDetail>
+
+      <StPokemonTypeWrapper>
+        {targetPokemon.types.map((type) => {
+          const type_obj = TYPE_COLOR_DATA.find(function (t) {
+            return type === t.type;
+          });
+          return (
+            <StPokemonType
+              key={type_obj.id}
+              $bg_color={type_obj.bg_color}
+              $border_color={type_obj.border_color}
+            >
+              {type}
+            </StPokemonType>
+          );
+        })}
+      </StPokemonTypeWrapper>
+
       <StPokemonDetail>{targetPokemon.description}</StPokemonDetail>
       <StBtnContainer>
         <StButton
