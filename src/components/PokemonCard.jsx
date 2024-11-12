@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const StCard = styled.div`
+  justify-self: center;
+  width: 140px;
   border: 1px solid rgb(221, 221, 221);
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
@@ -60,10 +62,12 @@ function PokemonCard({ pokemon, cardButtonHandler, buttonText }) {
   const str_id = pokemon.id.toString().padStart(3, "0");
   const navigate = useNavigate();
 
+  // 디테일 페이지 넘어가기
   const handleCardClick = () => {
     navigate(`/pokemon-details/${pokemon.id}`);
   };
 
+  // 추가/삭제 버튼 동작
   const handleButtonClick = (e) => {
     // 버튼이 눌렸을때는 디테일 페이지 X
     e.stopPropagation();

@@ -2,9 +2,16 @@ import { useState } from "react";
 import "./App.css";
 import Router from "./shared/Router";
 import { PokemonContext } from "./context/PokemonContext";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
+
+  // toastify 테스트
+  const notify = (msg) => {
+    toast.success(`${msg}`);
+  };
 
   // 포켓몬 추가
   const addPokemonHandler = (pokemon) => {
@@ -16,10 +23,10 @@ function App() {
       } else {
         if (prevList.includes(pokemon)) {
           // 중복 확인
-          alert("중복된 포켓몬이 있습니다.");
+          toast.error("중복된 포켓몬이 있습니다.");
         } else {
           // 6개 초과시
-          alert("6개 초과");
+          toast.error("6개 초과");
         }
 
         return [...prevList];
@@ -53,9 +60,19 @@ function App() {
         addPokemonHandler,
         removePokemonHendler,
         removeAllPokemon,
+        notify,
       }}
     >
       <Router />
+      <ToastContainer
+        position="top-right" // 알람 위치 지정
+        autoClose={2000} // 자동 off 시간
+        hideProgressBar={true} // 진행시간바 숨김
+        closeOnClick // 클릭으로 알람 닫기
+        draggable // 드래그 가능
+        pauseOnHover // 마우스를 올리면 알람 정지
+        theme="light"
+      />
     </PokemonContext.Provider>
   );
 }

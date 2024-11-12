@@ -22,25 +22,23 @@ const StCellWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   margin-top: 20px;
-  gap: 20px;
-  width: 90%;
-  height: 200px;
+  gap: 40px;
+  min-height: 250px;
   justify-items: stretch;
   align-items: center;
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1024px) {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 720px) {
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 10px;
   }
 
   @media (max-width: 360px) {
     grid-template-columns: 1fr;
-    gap: 40px;
   }
 `;
 
@@ -63,6 +61,7 @@ function Dashboard() {
   const removePokemonHendler = useContext(PokemonContext).removePokemonHendler;
   const removeAllPokemon = useContext(PokemonContext).removeAllPokemon;
 
+  // 비어있는 슬롯 수
   const emptyCell = Array(6 - pokemonList.length).fill({});
 
   return (
