@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
 import MOCK_DATA from "../assets/MOCK_DATA";
 import styled from "styled-components";
-import { useContext } from "react";
-import { PokemonContext } from "../context/PokemonContext";
 import TYPE_COLOR_DATA from "../assets/TYPE_COLOR_DATA";
+import { useDispatch } from "react-redux";
+import { addPokemon } from "../redux/slices/PokemonSelectorSlice";
 
 // 디테일 페이지
 const StDetailContainer = styled.div`
@@ -102,7 +102,7 @@ const StArrowBtn = styled.button`
 function PokemonDetail() {
   const navigate = useNavigate();
   const params = useParams();
-  const addPokemonHandler = useContext(PokemonContext).addPokemonHandler;
+  const dispatch = useDispatch();
 
   // 포켓몬 정보 불러오기
   const targetPokemon = MOCK_DATA.find(function (pokemon) {
@@ -164,7 +164,7 @@ function PokemonDetail() {
         >
           뒤로가기
         </StButton>
-        <StButton onClick={() => addPokemonHandler(targetPokemon)}>
+        <StButton onClick={() => dispatch(addPokemon(targetPokemon))}>
           추가
         </StButton>
       </StBtnContainer>

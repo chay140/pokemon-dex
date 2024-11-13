@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import RestartImg from "../assets/pixel_restart.png";
 import PokemonCard from "./PokemonCard";
-import { useContext } from "react";
-import { PokemonContext } from "../context/PokemonContext";
 import PokeballCell from "./PokeballCell";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  clearPokemonList,
+  removePokemon,
+} from "../redux/slices/PokemonSelectorSlice";
 
+// 대시보드 영역
 const StyledDashboard = styled.div`
   margin-top: 50px;
   display: flex;
@@ -18,6 +22,7 @@ const StyledDashboard = styled.div`
   border-radius: 10px;
 `;
 
+// 6개 셀 만들기
 const StCellWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -42,6 +47,7 @@ const StCellWrapper = styled.div`
   }
 `;
 
+// 초기화 버튼
 const StResetBtn = styled.button`
   margin-top: 30px;
   background-color: rgb(255, 255, 255);
@@ -50,6 +56,7 @@ const StResetBtn = styled.button`
   cursor: pointer;
 `;
 
+// 초기화 이미지
 const StResetImg = styled.img`
   width: 30px;
   height: 30px;
@@ -57,9 +64,18 @@ const StResetImg = styled.img`
 `;
 
 function Dashboard() {
-  const pokemonList = useContext(PokemonContext).pokemonList;
-  const removePokemonHendler = useContext(PokemonContext).removePokemonHendler;
-  const removeAllPokemon = useContext(PokemonContext).removeAllPokemon;
+  const dispatch = useDispatch();
+
+  // 리스트 받아오기 (redux 사용)
+  const pokemonList = useSelector(
+    (state) => state.pokemonSelector.selectedPokemonList
+  );
+  const removePokemonHandler = (pokemon) => {
+    dispatch(removePokemon(pokemon));
+  };
+  const clearPokemonHandler = () => {
+    dispatch(clearPokemonList());
+  };
 
   // 비어있는 슬롯 수
   const emptyCell = Array(6 - pokemonList.length).fill({});
@@ -75,17 +91,19 @@ function Dashboard() {
                 key={pokemon.id}
                 pokemon={pokemon}
                 buttonText={`삭제`}
-                cardButtonHandler={removePokemonHendler}
+                cardButtonHandler={removePokemonHandler}
               />
             );
           } else {
-            {/* TODO key 어떡하지...  */}
+            {
+              /* TODO key 어떡하지...  */
+            }
             return <PokeballCell key={Math.random()} />;
           }
         })}
       </StCellWrapper>
-      <StResetBtn onClick={removeAllPokemon}>
-        <StResetImg src={RestartImg} alt=""/>
+      <StResetBtn onClick={clearPokemonHandler}>
+        <StResetImg src={RestartImg} alt="" />
       </StResetBtn>
     </StyledDashboard>
   );

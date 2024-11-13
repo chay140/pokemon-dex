@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+// 카드 전체 div
 const StCard = styled.div`
   justify-self: center;
   width: 140px;
@@ -19,6 +20,7 @@ const StCard = styled.div`
   }
 `;
 
+// 이미지 너비/길이
 const StImgWrapper = styled.div`
   width: 100px;
   height: 100px;
@@ -28,20 +30,24 @@ const StImgWrapper = styled.div`
   align-items: center;
 `;
 
+// 텍스트 상자
 const StTextWrapper = styled.div`
   margin: 10px;
 `;
 
+// 포켓몬 이름 스타일링
 const StPokemonName = styled.p`
   color: black;
   font-weight: bold;
   margin: 5px 10px;
 `;
 
+// 포켓몬 도감 번호
 const StPokemonNum = styled.p`
   color: rgb(102, 102, 102);
 `;
 
+// 추가 버튼
 const StPokemonAddButton = styled.button`
   width: 40%;
   margin-top: 10px;
