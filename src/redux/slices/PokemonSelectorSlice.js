@@ -12,15 +12,17 @@ const pokemonSelectorSlice = createSlice({
     // 포켓몬 추가
     addPokemon: (state, action) => {
       const pokemon = action.payload;
-      if (
-        state.selectedPokemonList.length < 6 &&
-        !state.selectedPokemonList.includes(pokemon)
-      ) {
+
+      // 중복 확인
+      const isDuplicate = state.selectedPokemonList.some(
+        (item) => item.id === pokemon.id
+      );
+
+      if (state.selectedPokemonList.length < 6 && !isDuplicate) {
         state.selectedPokemonList.push(pokemon);
         toast.success(`${pokemon.korean_name}(이)가 추가되었습니다!`);
       } else {
-        if (state.selectedPokemonList.includes(pokemon)) {
-          // 중복 확인
+        if (isDuplicate) {
           toast.error("중복된 포켓몬이 있습니다.");
         } else {
           // 6개 초과시
